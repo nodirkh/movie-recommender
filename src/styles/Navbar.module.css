@@ -15,6 +15,11 @@
 
 .navbar_title {
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.navbar_title:hover {
+    color: #4545f08e;
 }
 
 .navbar_items {
