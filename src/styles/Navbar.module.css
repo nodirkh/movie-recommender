@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar_title {
+    cursor: pointer;
+}
+
+.navbar_items {
+    list-style: none;
+}
+
+.navbar_item {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.navbar_item a {
+    text-decoration: none;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar_item a:hover {
+    color: #4545f08e;
+}
