@@ -1,24 +1,14 @@
 import React from "react";
-import styles from "../styles/Navbar.module.css";
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <React.Fragment>
-      <header className={styles.navbar_module}>
-        <div className={styles.navbar_container}>
-          <h1 className={styles.navbar_title}>Movie Recommender</h1>
-          <nav className={styles.navbar}>
-            <ul className={styles.navbar_items}>
-              <li className={styles.navbar_item}>
-                <a href="google.com">Search by interests</a>
-              </li>
-              <li className={styles.navbar_item}>
-                <a href="google.com">Search by genre</a>
-              </li>
-            </ul>
-          </nav>
+      <div className="flex items-center justify-between p-4 z-50 w-full absolute">
+        <h1 className="text-red-600 font-bold text-4xl cursor-pointer">MOVIE RECOMMENDER</h1>
+        <div>
+          <button className="bg-red-600 px-6 py-2 rounded cursor-pointer text-white">Pick Movies</button>
         </div>
-      </header>
+      </div>
     </React.Fragment>
   );
 };
