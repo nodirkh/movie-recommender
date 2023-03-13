@@ -6,7 +6,7 @@ function App() {
     <React.Fragment>
       <Navbar />
     </React.Fragment>
-  )
+  );
 }
 
 export default App;
