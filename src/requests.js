@@ -1,8 +1,8 @@
 const requests = {
-    url: "http://localhost:8080/users/recommendations",
-    action: {"gender": "", "age": "18", "occupation": "", "genres": "Action"},
-    drama: {"gender": "", "age": "15", "occupation": "", "genres": "Drama"},
-    adventure: {"gender": "", "age": "", "occupation": "", "genres": "Adventure"},
+    url: "http://localhost:8080/projectApp/api/users/recommendations",
+    action: {"gender": "", "age": "", "occupation": "", "genres": "action"},
+    drama: {"gender": "", "age": "", "occupation": "", "genres": "drama"},
+    adventure: {"gender": "", "age": "", "occupation": "", "genres": "adventure"},
 }
 
 export default requests

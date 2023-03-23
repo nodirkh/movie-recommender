@@ -1,7 +1,2 @@
-#!/bin/bash
-
-git clone https://github.com/AzmtMrzbkv/Movie-Recommendation-System.git
-cd ./Movie-Recommendation-System
-
-mongod --fork --syslog --dbpath src/main/resources
+cd /root/project/main/App
 mvn clean spring-boot:run
