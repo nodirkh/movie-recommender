@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from 'react';
+import { Play, Star, Calendar, Clock } from 'lucide-react';
 
 const Movie = ({ item, index }) => {
   const [isHovered, setIsHovered] = useState(false);

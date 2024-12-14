@@ -1,4 +1,6 @@
-import React from "react";
+import React from 'react';
+import { Sun, Moon, Play } from 'lucide-react';
+
 
 const Navbar = () => {
   const { isDark, toggleTheme } = React.useContext(ThemeContext);
