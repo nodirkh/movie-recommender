@@ -1,5 +1,8 @@
 import React from "react";
 import Row from "../components/Row";
+import Navbar from "../components/Navbar";
+import { Play } from 'lucide-react';
+
 
 const Homepage = () => {
   const mockMovies = [
