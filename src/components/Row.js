@@ -2,10 +2,44 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Movie from "./Movie";
+import requests from "../requests";
+import { AlertCircle } from 'lucide-react';
 
-const Row = ({ title, movies = [], rowID }) => {
+
+const Row = ({ title, type, rowID }) => {
+  const [movies, setMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  
+  useEffect(() => {
+    const fetchMovies = async () => {
+      if (!type) return;
+      
+      setIsLoading(true);
+      setError(null);
+      
+      try {
+        const response = await fetch(`${requests.url}?${new URLSearchParams(type)}`);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setMovies(Array.isArray(data) ? data : []);
+      } catch (err) {
+        console.error('Error fetching movies:', err);
+        setError(err.message);
+        setMovies([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchMovies();
+  }, [type]);
   
   const checkScrollability = () => {
     const slider = document.getElementById(`slider${rowID}`);
@@ -32,7 +66,61 @@ const Row = ({ title, movies = [], rowID }) => {
     }
   };
   
-  if (!movies.length) return null;
+  if (isLoading) {
+    return (
+      <div className="mb-12">
+        <div className="flex items-center justify-between mb-6 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {title}
+          </h2>
+        </div>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex space-x-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="flex-shrink-0 w-48">
+                <div className="w-full h-72 bg-gray-200 dark:bg-gray-700 rounded-xl animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  if (error) {
+    return (
+      <div className="mb-12">
+        <div className="flex items-center justify-between mb-6 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {title}
+          </h2>
+        </div>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center space-x-3 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
+            <AlertCircle className="w-5 h-5 text-red-500" />
+            <p className="text-red-700 dark:text-red-400">
+              Failed to load {title.toLowerCase()}: {error}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+  
+  if (!movies.length) {
+    return (
+      <div className="mb-12">
+        <div className="flex items-center justify-between mb-6 px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {title}
+          </h2>
+        </div>
+        <div className="px-4 sm:px-6 lg:px-8">
+          <p className="text-gray-500 dark:text-gray-400">No movies found for this category.</p>
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div className="mb-12">
